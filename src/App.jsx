@@ -40,9 +40,15 @@ export const App = () => {
         <tbody>
           {goods.map(good => {
             return (
-              <>
+              <tr
+                key={good}
+                data-cy="Good"
+                className={
+                  good === selectedGood ? 'has-background-success-light' : ''
+                }
+              >
                 {good !== selectedGood ? (
-                  <tr data-cy="Good">
+                  <>
                     <td>
                       <button
                         onClick={() => setSelectedGood(good)}
@@ -53,13 +59,12 @@ export const App = () => {
                         +
                       </button>
                     </td>
-
                     <td data-cy="GoodTitle" className="is-vcentered">
                       {good}
                     </td>
-                  </tr>
+                  </>
                 ) : (
-                  <tr data-cy="Good" className="has-background-success-light">
+                  <>
                     <td>
                       <button
                         onClick={() => setSelectedGood('')}
@@ -70,13 +75,12 @@ export const App = () => {
                         -
                       </button>
                     </td>
-
                     <td data-cy="GoodTitle" className="is-vcentered">
                       {good}
                     </td>
-                  </tr>
+                  </>
                 )}
-              </>
+              </tr>
             );
           })}
         </tbody>
